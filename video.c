@@ -36,28 +36,46 @@ const char *texture_names[] = {
 	"playerdown.bmp",
 	"playerleft.bmp", 
 	"playerright.bmp",
-	"playerprojectiledown.bmp",
+/*	"playerprojectiledown.bmp",
 	"playerprojectileup.bmp",
 	"playerprojectileleft.bmp",
 	"playerprojectileright.bmp",
-	"enemyflame.bmp",
+*/	"enemyflame.bmp",
 	"enemyup.bmp",
 	"enemydown.bmp",
 	"enemyleft.bmp",
 	"enemyright.bmp",
-	"background.bmp"
+	"background.bmp",
+	"beginscren.bmp"
 };
 	
 int load_textures(void)
 {
 	int i;
 	
+	printf("Max textures: %d\n", MAX_TEXTURES);
 	for(i = 0; i < MAX_TEXTURES; i++)
 	{
+		printf("Loading texture: '%s'\n", texture_names[i]);
 		tex[i] = SDL_LoadBMP(texture_names[i]);
 		if(!tex[i])
 			return 0;
 	}
 
 	return 1;
+}
+
+void draw_title_screen(void)
+{
+	SDL_BlitSurface(tex[TEX_BEGIN], NULL, screen, NULL);
+}
+
+void draw_background(void)
+{
+	SDL_BlitSurface(tex[TEX_BG], NULL, screen, NULL);	
+}
+
+void render(void)
+{
+	SDL_Flip(screen);	
 }

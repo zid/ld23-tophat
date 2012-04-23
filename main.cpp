@@ -36,12 +36,10 @@ device, so we set them up beforehand */
     if ( SDL_Init( SDL_INIT_VIDEO ) < 0 )
     {
         printf( "Unable to init SDL: %s\n", SDL_GetError() );
-        return 1;
     }
 
     if(Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers)) {
         printf("Unable to open audio!\n");
-        exit(1);
     }
 
     Mix_QuerySpec(&audio_rate, &audio_format, &audio_channels);
